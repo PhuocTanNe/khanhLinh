@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="Home Description" content="PhuocTan">
+    <meta name="author" content="Phước Tân">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="20Thang10.css">
+    <script src="20Thang10.js" defer></script>
+    <title>Quà 20 tháng 10</title>
+</head>
+<body>
+    <div id="progressContainer">
+        <div id="progressBar"></div>
+    </div>
+    
+    <h1><b>PHƯỚC TÂN</b></h1>
+    <h2>
+        Quà 20 tháng 10 online của tớ nhé   
+        <br> 
+        Rất tiếc vì tớ không thể ra ngoài
+        <br><br>
+        <button id="moThiep">
+            <h2>
+                Ấn vào đây này
+            </h2>
+        </button>
+    </h2>
+
+    <dialog id="myDialog">
+        <!-- Thanh tiến trình bên trong dialog -->
+        <div id="dialogProgressBar">
+            <div id="dialogProgress"></div>
+        </div>
+
+        <!-- Nội dung lời chúc, sẽ ẩn cho đến khi thanh tiến trình hoàn tất -->
+        <div id="dialogContent">
+            <h1>Lời chúc</h1>
+            <p>
+                Ngày 20/10 là dịp để chúc những người phụ nữ tuyệt vời nhất, và cậu chắc chắn nằm trong danh sách đó. 
+                Mong cậu luôn vui vẻ, xinh đẹp và thành công!
+            </p>
+            <button id="dongThiep">Đóng</button>
+        </div>
+    </dialog>
+
+    <script>
+        const moThiepBtn = document.getElementById('moThiep');
+        const myDialog = document.getElementById('myDialog');
+        const dongThiepBtn = document.getElementById('dongThiep');
+        const dialogProgress = document.getElementById('dialogProgress');
+        const dialogContent = document.getElementById('dialogContent');
+
+        moThiepBtn.addEventListener('click', () => {
+            myDialog.showModal();
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    dialogContent.style.display = 'block'; // Hiển thị nội dung sau khi thanh tiến trình đầy
+                } else {
+                    width++;
+                    dialogProgress.style.width = width + '%'; // Cập nhật chiều rộng thanh tiến trình
+                }
+            }, 30); // Tốc độ thanh tiến trình (nhanh hay chậm)
+        });
+
+        dongThiepBtn.addEventListener('click', () => {
+            myDialog.close();
+            dialogContent.style.display = 'none'; // Ẩn nội dung khi đóng dialog
+            dialogProgress.style.width = '0'; // Đặt lại thanh tiến trình về 0 khi đóng dialog
+        });
+    </script>
+</body>
+</html>
